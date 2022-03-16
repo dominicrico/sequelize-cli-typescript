@@ -48,8 +48,8 @@ interface <%= name[0].toUpperCase() + name.substr(1) %>Attributes {
   updatedAt?: Date
 }
 
-export interface <%= name[0].toUpperCase() + name.substr(1) %>Input extends Optional<<%= name[0].toUpperCase() + name.substr(1) %>Attributes, 'id'> {}
-export interface <%= name[0].toUpperCase() + name.substr(1) %>Output extends Required<<%= name[0].toUpperCase() + name.substr(1) %>Attributes> {}
+export interface <%= name[0].toUpperCase() + name.substr(1) %>Input extends Optional< <%= name[0].toUpperCase() + name.substr(1) %>Attributes, 'id' > {}
+export interface <%= name[0].toUpperCase() + name.substr(1) %>Output extends Required< <%= name[0].toUpperCase() + name.substr(1) %>Attributes > {}
 
 class <%= name[0].toUpperCase() + name.substr(1) %> extends Model {
   public id!: number
