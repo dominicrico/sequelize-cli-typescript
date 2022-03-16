@@ -37,7 +37,7 @@ import sequelize from '@bunch/lib/db'
   }
 %>
 
-export interface <%= name[0].toUpperCase() + name.substr(1) %>Attributes {
+interface <%= name[0].toUpperCase() + name.substr(1) %>Attributes {
   id: number
   <% attributes.forEach(function(attribute) {
   %><%= attribute.fieldName %>?: <%= getType(attribute.dataType) %>
@@ -48,15 +48,18 @@ export interface <%= name[0].toUpperCase() + name.substr(1) %>Attributes {
   updatedAt?: Date
 }
 
+export interface <%= name[0].toUpperCase() + name.substr(1) %>Input extends Optional<<%= name[0].toUpperCase() + name.substr(1) %>Attributes, 'id'> {}
+export interface <%= name[0].toUpperCase() + name.substr(1) %>Output extends Required<%= name[0].toUpperCase() + name.substr(1) %>Attributes> {}
+
 class <%= name[0].toUpperCase() + name.substr(1) %> extends Model {
   public id!: number
-  public readonly createdAt!: Date
-  public readonly updatedAt!: Date
-
   <% attributes.forEach(function(attribute) {
-  %>public <%= attribute.fieldName %>: <%= getType(attribute.dataType) %>
+  %>public <%= attribute.fieldName %>?: <%= getType(attribute.dataType) %>
   <%
   }) %>
+
+  public readonly createdAt!: Date
+  public readonly updatedAt!: Date
 }
 
 <%= name[0].toUpperCase() + name.substr(1) %>.init(
