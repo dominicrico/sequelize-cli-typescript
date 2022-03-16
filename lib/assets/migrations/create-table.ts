@@ -28,7 +28,7 @@ export = {
         })
     },
 
-    down: (queryInterface: QueryInterface, Sequelize: SequelizeStatic) => {
+    down: (queryInterface: QueryInterface, Sequelize: typeof DataTypes) => {
         return queryInterface.dropTable('<%= tableName %>')
     }
 }
