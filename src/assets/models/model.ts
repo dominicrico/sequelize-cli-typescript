@@ -1,4 +1,5 @@
-import { Sequelize, DataTypes } from 'sequelize'
+import { Sequelize, DataTypes, Model } from 'sequelize'
+import sequelize from '@bunch/lib/db'
 
 <%
   function getType(dataType) {
@@ -47,7 +48,7 @@ export interface <%= name[0].toUpperCase() + name.substr(1) %>Attributes {
   updatedAt?: Date
 }
 
-Class <%= name[0].toUpperCase() + name.substr(1) %> extends Model {
+class <%= name[0].toUpperCase() + name.substr(1) %> extends Model {
   public id!: number
   public readonly createdAt!: Date
   public readonly updatedAt!: Date
@@ -61,7 +62,13 @@ Class <%= name[0].toUpperCase() + name.substr(1) %> extends Model {
 <%= name[0].toUpperCase() + name.substr(1) %>.init(
   {
     <% attributes.forEach(function(attribute, index) { %><%= attribute.fieldName %>: DataTypes.<%= attribute.dataFunction ? `${attribute.dataFunction.toUpperCase()}(DataTypes.${attribute.dataType.toUpperCase()})` : attribute.dataType.toUpperCase() %><%= (Object.keys(attributes).length - 1) > index ? ',' : '' %><% }) %>
+  },
+  {
+    paranoid: true,
+    timestamps: true,
+    sequelize,
+    modelName: '<%= name[0].toUpperCase() + name.substr(1) %>'
   }
 )
 
-export default People <%= name[0].toUpperCase() + name.substr(1) %>
+export default <%= name[0].toUpperCase() + name.substr(1) %>
