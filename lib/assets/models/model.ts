@@ -1,4 +1,4 @@
-import { Sequelize, DataTypes } from 'sequelize';
+import { Sequelize, DataTypes } from 'sequelize'
 
 <%
   function getType(dataType) {
@@ -37,31 +37,31 @@ import { Sequelize, DataTypes } from 'sequelize';
 %>
 
 export interface <%= name[0].toUpperCase() + name.substr(1) %>Attributes {
+  id: number
   <% attributes.forEach(function(attribute) {
   %><%= attribute.fieldName %>?: <%= getType(attribute.dataType) %>
   <%
   }) %>
+
+  createdAt?: Date
+  updatedAt?: Date
 }
 
-export interface <%= name[0].toUpperCase() + name.substr(1) %>Instance {
-  id: number;
-  createdAt: Date;
-  updatedAt: Date;
+Class <%= name[0].toUpperCase() + name.substr(1) %> extends Model {
+  public id!: number
+  public readonly createdAt!: Date
+  public readonly updatedAt!: Date
 
   <% attributes.forEach(function(attribute) {
-  %><%= attribute.fieldName %>: <%= getType(attribute.dataType) %>
+  %>public <%= attribute.fieldName %>: <%= getType(attribute.dataType) %>
   <%
   }) %>
 }
 
-export = (sequelize: Sequelize, DataTypes: DataTypes) => {
-  const <%= name %> = sequelize.define('<%= name %>', {
+<%= name[0].toUpperCase() + name.substr(1) %>.init(
+  {
     <% attributes.forEach(function(attribute, index) { %><%= attribute.fieldName %>: DataTypes.<%= attribute.dataFunction ? `${attribute.dataFunction.toUpperCase()}(DataTypes.${attribute.dataType.toUpperCase()})` : attribute.dataType.toUpperCase() %><%= (Object.keys(attributes).length - 1) > index ? ',' : '' %><% }) %>
-  }<%= underscored ? ', { underscored: true }' : '' %>);
+  }
+)
 
-  <%= name %>.associate = function(models) {
-    // associations can be defined here
-  };
-
-  return <%= name %>;
-};
+export default People <%= name[0].toUpperCase() + name.substr(1) %>

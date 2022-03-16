@@ -1,4 +1,4 @@
-import { QueryInterface, DataTypes } from 'sequelize';
+import { QueryInterface, DataTypes } from 'sequelize'
 
 export = {
 	up: (queryInterface: QueryInterface, Sequelize: typeof DataTypes) => {
@@ -8,4 +8,4 @@ export = {
 	down: (queryInterface: QueryInterface, Sequelize: typeof DataTypes) => {
 
 	}
-};
+}

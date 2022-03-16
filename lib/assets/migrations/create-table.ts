@@ -1,7 +1,7 @@
-import { QueryInterface, SequelizeStatic } from 'sequelize';
+import { QueryInterface, DataTypes } from 'sequelize'
 
 export = {
-    up: (queryInterface: QueryInterface, Sequelize: SequelizeStatic) => {
+    up: (queryInterface: QueryInterface, Sequelize: typeof DataTypes) => {
         return queryInterface.createTable('<%= tableName %>', {
             id: {
                 allowNull: false,
@@ -25,10 +25,10 @@ export = {
                 allowNull: false,
                 type: Sequelize.DATE
             }
-        });
+        })
     },
 
     down: (queryInterface: QueryInterface, Sequelize: SequelizeStatic) => {
-        return queryInterface.dropTable('<%= tableName %>');
+        return queryInterface.dropTable('<%= tableName %>')
     }
-};
+}
