@@ -43,11 +43,8 @@ import sequelize from '@bunch/lib/db'
     return dataType;
   }
 %>
-class <%= name[0].toUpperCase() + name.substr(1) %> extends Model {
-class <%= name[0].toUpperCase() + name.substr(1) %> extends Model<
-  InferAttributes<<%= name[0].toUpperCase() + name.substr(1) %>>,
-  InferCreationAttributes<<%= name[0].toUpperCase() + name.substr(1) %>>
-> {
+
+class <%= name[0].toUpperCase() + name.substr(1) %> extends Model<InferAttributes<<%= name[0].toUpperCase() + name.substr(1) %>>, InferCreationAttributes<<%= name[0].toUpperCase() + name.substr(1) %>>> {
   declare id: CreationOptional<number>
   <% attributes.forEach(function(attribute) {
   %>declare <%= attribute.fieldName %>: <%= getType(attribute.dataType) %>

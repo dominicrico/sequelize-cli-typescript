@@ -1,6 +1,6 @@
 import {
     DataTypes
-} from 'DataTypes'
+} from 'sequelize'
 //@ts-ignore
 import { umzug } from '../bin/commands/db.js'
 
