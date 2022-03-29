@@ -1,4 +1,11 @@
-import { DataTypes, Model, Optional } from 'sequelize'
+
+import {
+  DataTypes,
+  Model,
+  CreationOptional,
+  InferAttributes,
+  InferCreationAttributes
+} from 'sequelize'
 import sequelize from '@bunch/lib/db'
 
 <%
@@ -36,35 +43,29 @@ import sequelize from '@bunch/lib/db'
     return dataType;
   }
 %>
-
-interface <%= name[0].toUpperCase() + name.substr(1) %>Attributes {
-  id: number
-  <% attributes.forEach(function(attribute) {
-  %><%= attribute.fieldName %>?: <%= getType(attribute.dataType) %>
-  <%
-  }) %>
-
-  createdAt?: Date
-  updatedAt?: Date
-}
-
-export interface <%= name[0].toUpperCase() + name.substr(1) %>Input extends Optional< <%= name[0].toUpperCase() + name.substr(1) %>Attributes, 'id' > {}
-export interface <%= name[0].toUpperCase() + name.substr(1) %>Output extends Required< <%= name[0].toUpperCase() + name.substr(1) %>Attributes > {}
-
 class <%= name[0].toUpperCase() + name.substr(1) %> extends Model {
-  public id!: number
+class <%= name[0].toUpperCase() + name.substr(1) %> extends Model<
+  InferAttributes<<%= name[0].toUpperCase() + name.substr(1) %>>,
+  InferCreationAttributes<<%= name[0].toUpperCase() + name.substr(1) %>>
+> {
+  declare id: CreationOptional<number>
   <% attributes.forEach(function(attribute) {
-  %>public <%= attribute.fieldName %>?: <%= getType(attribute.dataType) %>
+  %>declare <%= attribute.fieldName %>: <%= getType(attribute.dataType) %>
   <%
   }) %>
 
-  public readonly createdAt!: Date
-  public readonly updatedAt!: Date
+  public readonly createdAt: CreationOptional<Date>
+  public readonly updatedAt: CreationOptional<Date>
+  public readonly deletedAt: CreationOptional<Date>
 }
 
 <%= name[0].toUpperCase() + name.substr(1) %>.init(
   {
-    <% attributes.forEach(function(attribute, index) { %><%= attribute.fieldName %>: DataTypes.<%= attribute.dataFunction ? `${attribute.dataFunction.toUpperCase()}(DataTypes.${attribute.dataType.toUpperCase()})` : attribute.dataType.toUpperCase() %><%= (Object.keys(attributes).length - 1) > index ? ',' : '' %><% }) %>
+    <% attributes.forEach(function(attribute, index) { %><%= attribute.fieldName %>: DataTypes.<%= attribute.dataFunction ? `${attribute.dataFunction.toUpperCase()}(DataTypes.${attribute.dataType.toUpperCase()})` : attribute.dataType.toUpperCase() %>,<% }) %>
+
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE,
+    deletedAt: DataTypes.DATE
   },
   {
     paranoid: true,

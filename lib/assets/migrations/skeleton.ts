@@ -1,11 +1,11 @@
-import { QueryInterface, DataTypes } from 'sequelize'
+import {
+	DataTypes
+} from 'sequelize'
+//@ts-ignore
+import { umzug } from '../bin/commands/db.js'
 
-export = {
-	up: (queryInterface: QueryInterface, Sequelize: typeof DataTypes) => {
+export type Migration = typeof umzug._types.migration
 
-	},
+export const up: Migration = async ({ context: queryInterface }) => {}
 
-	down: (queryInterface: QueryInterface, Sequelize: typeof DataTypes) => {
-
-	}
-}
+export const down: Migration = async ({ context: queryInterface }) => {}

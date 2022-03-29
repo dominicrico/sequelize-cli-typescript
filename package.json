@@ -12,7 +12,7 @@
     "js-beautify": "^1.8.8",
     "lodash": "^4.17.5",
     "resolve": "^1.5.0",
-    "umzug": "https://github.com/wildcookie007/umzug",
+    "umzug": "^3.1.0",
     "yargs": "^12.0.5"
   },
   "devDependencies": {
@@ -25,12 +25,12 @@
     "expect.js": "^0.3.1",
     "gulp": "^4.0.0",
     "mocha": "^5.2.0",
-    "mysql2": "^1.6.1",
+    "mysql2": "^2.3.3",
     "nodeify": "^1.0.1",
-    "pg": "^7.5.0",
-    "pg-hstore": "^2.3.2",
-    "sequelize": "^4.x",
-    "sqlite3": "^4.0.2",
+    "pg": "^8.7.3",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.x",
+    "sqlite3": "^5.0.2",
     "through2": "^3.0.0"
   },
   "options": {
