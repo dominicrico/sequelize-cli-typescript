@@ -12,7 +12,7 @@ export const up: Migration = async ({ context: queryInterface }) => {
             allowNull: false,
             autoIncrement: true,
             primaryKey: true,
-            type: DataTypes.INTEGER
+            type: DataTypes.INTEGER.UNSIGNED
         },
 
     <% attributes.forEach(function (attribute) { %>

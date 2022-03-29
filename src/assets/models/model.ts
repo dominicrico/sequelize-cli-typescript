@@ -51,13 +51,20 @@ class <%= name[0].toUpperCase() + name.substr(1) %> extends Model<InferAttribute
   <%
   }) %>
 
-  public readonly createdAt: CreationOptional<Date>
-  public readonly updatedAt: CreationOptional<Date>
-  public readonly deletedAt: CreationOptional<Date>
+  declare createdAt: CreationOptional<Date>
+  declare updatedAt: CreationOptional<Date>
+  declare deletedAt: CreationOptional<Date>
 }
 
 <%= name[0].toUpperCase() + name.substr(1) %>.init(
   {
+
+    id: {
+      autoIncrement: true,
+      primaryKey: true,
+      type: DataTypes.INTEGER.UNSIGNED
+    },
+
     <% attributes.forEach(function(attribute, index) { %><%= attribute.fieldName %>: DataTypes.<%= attribute.dataFunction ? `${attribute.dataFunction.toUpperCase()}(DataTypes.${attribute.dataType.toUpperCase()})` : attribute.dataType.toUpperCase() %>,<% }) %>
 
     createdAt: DataTypes.DATE,
