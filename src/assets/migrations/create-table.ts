@@ -35,6 +35,6 @@ export const up: Migration = async ({ context: queryInterface }) => {
     
 //@ts-ignore
 export const down: Migration = async ({ context: queryInterface }) => {
-    await queryInterface.dropTable('<%= <%= tableName[0].toUpperCase() + tableName.substr(1) %> %>')
+    await queryInterface.dropTable('<%= tableName[0].toUpperCase() + tableName.substr(1) %>')
 }
 
