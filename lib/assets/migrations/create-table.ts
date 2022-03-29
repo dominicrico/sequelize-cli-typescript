@@ -1,6 +1,6 @@
 import {
     DataTypes
-} from 'sequelize'
+} from 'DataTypes'
 //@ts-ignore
 import { umzug } from '../bin/commands/db.js'
 
@@ -12,23 +12,23 @@ export const up: Migration = async ({ context: queryInterface }) => {
             allowNull: false,
             autoIncrement: true,
             primaryKey: true,
-            type: Sequelize.INTEGER
+            type: DataTypes.INTEGER
         },
 
     <% attributes.forEach(function (attribute) { %>
         <%= attribute.fieldName %>: {
-            type: Sequelize.<%= attribute.dataFunction ? `${attribute.dataFunction.toUpperCase()}(Sequelize.${attribute.dataType.toUpperCase()})` : attribute.dataType.toUpperCase() %>
+            type: DataTypes.<%= attribute.dataFunction ? `${attribute.dataFunction.toUpperCase()}(DataTypes.${attribute.dataType.toUpperCase()})` : attribute.dataType.toUpperCase() %>
         },
     <% }) %>
 
         <%= createdAt %>: {
             allowNull: false,
-            type: Sequelize.DATE
+            type: DataTypes.DATE
         },
 
         <%= updatedAt %>: {
             allowNull: false,
-            type: Sequelize.DATE
+            type: DataTypes.DATE
         }
     })
 }
