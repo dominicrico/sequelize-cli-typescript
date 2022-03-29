@@ -7,7 +7,7 @@ import { umzug } from '../bin/commands/db.js'
 export type Migration = typeof umzug._types.migration
 
 export const up: Migration = async ({ context: queryInterface }) => {
-    await queryInterface.createTable('<%= tableName %>', {
+    await queryInterface.createTable('<%= tableName[0].toUpperCase() + tableName.substr(1) %>', {
         id: {
             allowNull: false,
             autoIncrement: true,
@@ -35,6 +35,6 @@ export const up: Migration = async ({ context: queryInterface }) => {
     
 //@ts-ignore
 export const down: Migration = async ({ context: queryInterface }) => {
-    await queryInterface.dropTable('<%= tableName %>')
+    await queryInterface.dropTable('<%= <%= tableName[0].toUpperCase() + tableName.substr(1) %> %>')
 }
 
