@@ -1,6 +1,6 @@
 {
   "name": "sequelize-cli-bunch",
-  "version": "5.2.10",
+  "version": "5.2.15",
   "description": "The Sequelize CLI for Bunch.Capital with full TypeScript support",
   "bin": {
     "sequelize": "./lib/sequelize"

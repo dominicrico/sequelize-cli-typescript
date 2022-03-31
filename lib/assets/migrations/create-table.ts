@@ -1,12 +1,13 @@
 import {
-    DataTypes
+    DataTypes,
+    QueryInterface
 } from 'sequelize'
 //@ts-ignore
 import { umzug } from '../bin/commands/db.js'
 
 export type Migration = typeof umzug._types.migration
 
-export const up: Migration = async ({ context: queryInterface }) => {
+export const up: Migration = async ({ context: queryInterface }: { context: QueryInterface }) => {
     await queryInterface.createTable('<%= tableName[0].toUpperCase() + tableName.substr(1) %>', {
         id: {
             allowNull: false,
@@ -33,8 +34,7 @@ export const up: Migration = async ({ context: queryInterface }) => {
     })
 }
     
-//@ts-ignore
-export const down: Migration = async ({ context: queryInterface }) => {
+export const down: Migration = async ({ context: queryInterface }: { context: QueryInterface }) => {
     await queryInterface.dropTable('<%= tableName[0].toUpperCase() + tableName.substr(1) %>')
 }
 

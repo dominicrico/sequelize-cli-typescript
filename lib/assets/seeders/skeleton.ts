@@ -1,12 +1,13 @@
 import {
-    DataTypes
+  DataTypes,
+  QueryInterface
 } from 'sequelize'
 //@ts-ignore
 import { umzug } from '../bin/commands/db.js'
 
 export type Migration = typeof umzug._types.migration
 
-export const up: Migration = async ({ context: queryInterface }) => {
+export const up: Migration = async ({ context: queryInterface }: { context: QueryInterface }) => {
     /*await queryInterface.bulkInsert('Users', [{
       firstName: 'John',
       lastName: 'Doe',
@@ -17,6 +18,6 @@ export const up: Migration = async ({ context: queryInterface }) => {
 }
     
 //@ts-ignore
-export const down: Migration = async ({ context: queryInterface }) => {
+export const down: Migration = async ({ context: queryInterface }: { context: QueryInterface }) => {
   /*await queryInterface.bulkDelete('Users', null, {})*/
 }

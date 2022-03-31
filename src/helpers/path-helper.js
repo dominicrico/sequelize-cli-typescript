@@ -67,7 +67,7 @@ module.exports = {
   },
 
   getMigrationsCompiledPath () {
-    return args.migrationsCompiledPath || path.resolve(process.cwd(), 'migrations/compiled');
+    return args.migrationsCompiledPath || path.resolve(process.cwd(), 'migrations');
   },
   // seeders
   getSeederSourcePath (seederName) {
@@ -83,7 +83,7 @@ module.exports = {
   },
 
   getSeedersCompiledPath () {
-    return args.seedersCompiledPath || path.resolve(process.cwd(), 'seeders/compiled');
+    return args.seedersCompiledPath || path.resolve(process.cwd(), 'seeders');
   },
   //
 

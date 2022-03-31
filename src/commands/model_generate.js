@@ -70,14 +70,6 @@ function ensureMigrationsFolder () {
       '). Did you run ' + clc.blueBright('sequelize init') + '?'
     );
   }
-
-  if (!helpers.path.existsSync(helpers.path.getMigrationsCompiledPath())) {
-    helpers.view.error(
-      'Unable to find migrations (compiled) path (' +
-      helpers.path.getMigrationsCompiledPath() +
-      '). Did you compile your migrations?'
-    );
-  }
 }
 
 function checkModelFileExistence (args) {
