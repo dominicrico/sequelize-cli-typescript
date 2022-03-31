@@ -63,11 +63,11 @@ module.exports = {
   },
 
   getMigrationsSourcePath () {
-    return args.migrationsSourcePath || path.resolve(process.cwd(), 'migrations');
+    return args.migrationsPath || path.resolve(process.cwd(), 'migrations');
   },
 
   getMigrationsCompiledPath () {
-    return args.migrationsCompiledPath || path.resolve(process.cwd(), 'migrations');
+    return args.migrationsPath || path.resolve(process.cwd(), 'migrations');
   },
   // seeders
   getSeederSourcePath (seederName) {
@@ -79,11 +79,11 @@ module.exports = {
   },
 
   getSeedersSourcePath () {
-    return args.seedersSourcePath || path.resolve(process.cwd(), 'seeders');
+    return args.seedersPath || path.resolve(process.cwd(), 'seeders');
   },
 
   getSeedersCompiledPath () {
-    return args.seedersCompiledPath || path.resolve(process.cwd(), 'seeders');
+    return args.seedersPath || path.resolve(process.cwd(), 'seeders');
   },
   //
 
